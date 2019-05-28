@@ -50,6 +50,14 @@ local function OnClick(self, button)
 			else
 				ShowUIPanel(_G["GameMenuFrame"])
 			end
+		elseif E.db.micromenudt.defaultAction == "elvui" then
+			E:ToggleConfig()
+		elseif E.db.micromenudt.defaultAction == "elvuict" then
+			if not IsAddOnLoaded("ElvUI_ChatTweaks") or not ElvUI_ChatTweaks then
+				print("|cffff0000You do not have ElvUI_ChatTweaks enabled. Please enable the addon and try again.|r")
+			else
+				ElvUI_ChatTweaks:ToggleConfig()
+			end
 		end
 	else
 		DT.tooltip:Hide()
@@ -179,6 +187,27 @@ local function CreateMenu(self, level)
 			end
 		end,
 	})
+
+	-- elvui config
+	if E.db.micromenudt.showElvui and E then
+		UIDropDownMenu_AddButton({
+			hasArrow = false,
+			notCheckable = true,
+			colorCode = "|cffffffff",
+			text = L["ElvUI Config"],
+			func = function() E:ToggleConfig() end,
+		})
+	end
+
+	if E.db.micromenudt.showElvuict and IsAddOnLoaded("ElvUI_ChatTweaks") then
+		UIDropDownMenu_AddButton({
+			hasArrow = false,
+			notCheckable = true,
+			colorCode = "|cffffffff",
+			text = L["ElvUI Chat Tweaks"],
+			func = function() ElvUI_ChatTweaks:ToggleConfig() end,
+		})
+	end
 end
 
 local function OnEnter(self)
@@ -198,6 +227,8 @@ Frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 P["micromenudt"] = {
 	defaultAction = "character",
+	showElvui = true,
+	showElvuict = false,
 }
 
 local function InjectOptions()
@@ -246,8 +277,22 @@ local function InjectOptions()
 					collections = L["Toggle Collections Frame"],
 					encounters = L["Toggle Encounters Guide"],
 					gamemenu = L["Toggle Game Menu"],
+					elvui = L["Toggle ElvUI Config"],
+					elvuict = L["Toggle ElvUI Chat Tweaks Config"],
 				},
 			},
+			showElvui = {
+				type = "toggle",
+				order = 5,
+				name = L["Show ElvUI Config"],
+				desc = L["Show a shortcut to open ElvUI's config in the menu."],
+			},
+			showElvuict = {
+				type = "toggle",
+				order = 6,
+				name = L["Show ElvUI CT"],
+				desc = L["Show a shortcut to open ElvUI Chat Tweaks' config in the menu.\n\n|cffff0000This only applies if this addon is loaded.|r"],
+			}
 		},
 	}
 end
