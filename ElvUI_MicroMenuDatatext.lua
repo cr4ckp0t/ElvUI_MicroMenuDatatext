@@ -195,11 +195,11 @@ local function CreateMenu(self, level)
 			notCheckable = true,
 			colorCode = "|cffffffff",
 			text = L["ElvUI Config"],
-			func = function() E:ToggleConfig() end,
+			func = function() E:ToggleOptionsUI() end,
 		})
 	end
 
-	if E.db.micromenudt.showElvuict and IsAddOnLoaded("ElvUI_ChatTweaks") then
+	if E.db.micromenudt.showElvuict and IsAddOnLoaded("ElvUI_ChatTweaks") and ElvUI_ChatTweaks then
 		UIDropDownMenu_AddButton({
 			hasArrow = false,
 			notCheckable = true,
