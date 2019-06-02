@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- ElvUI_MicroMenuDatatext By Lockslap (US, Bleeding Hollow)
+-- ElvUI_MicroMenuDatatext By Crackpotx (US, Bleeding Hollow)
 -------------------------------------------------------------------------------
 local debug = false
 --@debug@
@@ -15,17 +15,17 @@ L["Default action when you left click on the datatext."] = true
 L["ElvUI Chat Tweaks"] = true
 L["ElvUI Config"] = true
 L["Game Menu"] = true
-L["Lockslap"] = true
+L["Crackpotx"] = true
 L["Micro Menu Datatext by"] = true
 L["Micro Menu Datatext"] = true
 L["Micro Menu"] = true
-L["Plugins by |cff9382c9Lockslap|r"] = true
+L["Plugins by |cff9382c9Crackpotx|r"] = true
 L["Show ElvUI CT"] = true
 L["Show ElvUI Config"] = true
 L["Show a shortcut to open ElvUI Chat Tweaks' config in the menu.\n\n|cffff0000This only applies if this addon is loaded.|r"] = true
 L["Show a shortcut to open ElvUI's config in the menu."] = true
-L["Thanks for using and supporting my work!  - |cff9382c9Lockslap|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."] = true
-L["Thanks for using and supporting my work!  -- |cff9382c9Lockslap|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."] = true
+L["Thanks for using and supporting my work!  - |cff9382c9Crackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."] = true
+L["Thanks for using and supporting my work!  -- |cff9382c9Crackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."] = true
 L["Toggle Achievements"] = true
 L["Toggle Character Frame"] = true
 L["Toggle Collections Frame"] = true
