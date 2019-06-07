@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- ElvUI Titles Datatext By Crackpotx (US, Bleeding Hollow)
+-- ElvUI Titles Datatext By Crackpotx (US, Lightbringer)
 -------------------------------------------------------------------------------
 local E, _, V, P, G = unpack(ElvUI)
 local DT = E:GetModule("DataTexts")

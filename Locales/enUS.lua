@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- ElvUI_MicroMenuDatatext By Crackpotx (US, Bleeding Hollow)
+-- ElvUI_MicroMenuDatatext By Crackpotx (US, Lightbringer)
 -------------------------------------------------------------------------------
 local debug = false
 --@debug@
