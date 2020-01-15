@@ -1,7 +1,7 @@
-## Interface: 80205
+## Interface: 80300
 ## Author: Crackpotx
 ## Title: |cff1784d1ElvUI|r Micro Menu Datatext
-## Version: 1.1.3
+## Version: 1.1.4
 ## Notes: Replace the stock micro menu with a datatext.
 ## RequiredDeps: ElvUI
 
