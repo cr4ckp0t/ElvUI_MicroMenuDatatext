@@ -62,12 +62,6 @@ local function GetDefaultAction()
 	end	
 end
 
-local function OnUpdate(self, elapsed)
-	if self.text:GetText() == nil then
-		self.text:SetText(L["Micro Menu"])
-	end
-end
-
 local function OnClick(self, button)
 	if button == "LeftButton" then
 		-- do the quick action
@@ -268,18 +262,21 @@ local function OnEnter(self)
 	DT.tooltip:Show()
 end
 
+local function OnEvent(self, event, ...)
+	lastPanel = self
+	Frame.initialize = CreateMenu
+	Frame.displayMode = "MENU"
+
+	if self.text:GetText() == nil then
+		self.text:SetText(L["Micro Menu"])
+	end
+end
+
 local function ValueColorUpdate(hex, r, g, b)
 	displayString = join("", hex, "%s|r")
 	hexColor = hex
 end
 E["valueColorUpdateFuncs"][ValueColorUpdate] = true
-
-function Frame:PLAYER_ENTERING_WORLD()
-	self.initialize = CreateMenu
-	self.displayMode = "MENU"
-end
-Frame:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
-Frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 P["micromenudt"] = {
 	defaultAction = "character",
@@ -354,4 +351,4 @@ local function InjectOptions()
 end
 
 EP:RegisterPlugin(..., InjectOptions)
-DT:RegisterDatatext("Micro Menu", nil, nil, OnUpdate, OnClick, OnEnter, L["Micro Menu"])
+DT:RegisterDatatext("Micro Menu", {"PLAYER_ENTERING_WORLD"}, OnEvent, nil, OnClick, OnEnter, L["Micro Menu"])
