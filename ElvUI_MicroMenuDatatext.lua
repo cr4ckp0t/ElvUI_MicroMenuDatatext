@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- ElvUI Titles Datatext By Crackpotx (US, Lightbringer)
+-- ElvUI Titles Datatext By Crackpot (US, Thrall)
 -------------------------------------------------------------------------------
 local E, _, V, P, G = unpack(ElvUI)
 local DT = E:GetModule("DataTexts")
@@ -351,4 +351,5 @@ local function InjectOptions()
 end
 
 EP:RegisterPlugin(..., InjectOptions)
-DT:RegisterDatatext("Micro Menu", {"PLAYER_ENTERING_WORLD"}, OnEvent, nil, OnClick, OnEnter, L["Micro Menu"])
+DT:RegisterDatatext("Micro Menu", nil, {"PLAYER_ENTERING_WORLD"}, OnEvent, nil, OnClick, OnEnter, nil, L["Micro Menu"])
+--DT:RegisterDatatext("Micro Menu", {"PLAYER_ENTERING_WORLD"}, OnEvent, nil, OnClick, OnEnter, L["Micro Menu"])
