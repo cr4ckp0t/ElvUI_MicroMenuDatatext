@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- ElvUI MicroMenuDatatext By Crackpot (US, Thrall)
+-- ElvUI MicroMenuDatatext By Crackpot (US, Arthas)
 -------------------------------------------------------------------------------
 local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
 local L = AceLocale:NewLocale("ElvUI_MicroMenuDatatext", "enUS", true, true)

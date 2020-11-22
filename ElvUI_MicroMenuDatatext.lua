@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- ElvUI Titles Datatext By Crackpot (US, Thrall)
+-- ElvUI Titles Datatext By Crackpot (US, Arthas)
 -------------------------------------------------------------------------------
 local E, _, V, P, G = unpack(ElvUI)
 local DT = E:GetModule("DataTexts")
@@ -264,13 +264,15 @@ end
 
 local function OnEvent(self, event, ...)
 	lastPanel = self
-	Frame.initialize = CreateMenu
-	Frame.displayMode = "MENU"
-
-	if self.text:GetText() == nil then
-		self.text:SetText(L["Micro Menu"])
-	end
+	self.text:SetText(L["Micro Menu"])
 end
+
+Frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+Frame:SetScript("OnEvent", function(self, event, ...)
+	self.initialize = CreateMenu
+	self.displayMode = "MENU"
+	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+end)
 
 local function ValueColorUpdate(hex, r, g, b)
 	displayString = join("", hex, "%s|r")
