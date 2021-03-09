@@ -1,7 +1,7 @@
-## Interface: 90002
+## Interface: 90005
 ## Author: Crackpotx
 ## Title: |cff1784d1ElvUI|r Micro Menu Datatext
-## Version: 2.0.1
+## Version: 2.0.2
 ## Notes: Replace the stock micro menu with a datatext.
 ## RequiredDeps: ElvUI
 
