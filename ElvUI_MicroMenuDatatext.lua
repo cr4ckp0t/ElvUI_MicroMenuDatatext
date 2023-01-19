@@ -263,7 +263,6 @@ local function OnEnter(self)
 end
 
 local function OnEvent(self, event, ...)
-	lastPanel = self
 	self.text:SetText(L["Micro Menu"])
 end
 
@@ -274,11 +273,12 @@ Frame:SetScript("OnEvent", function(self, event, ...)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
 
-local function ValueColorUpdate(hex, r, g, b)
+local function ValueColorUpdate(self, hex, r, g, b)
 	displayString = join("", hex, "%s|r")
 	hexColor = hex
+
+	OnEvent(self)
 end
-E["valueColorUpdateFuncs"][ValueColorUpdate] = true
 
 P["micromenudt"] = {
 	defaultAction = "character",
@@ -353,5 +353,4 @@ local function InjectOptions()
 end
 
 EP:RegisterPlugin(..., InjectOptions)
-DT:RegisterDatatext("Micro Menu", nil, {"PLAYER_ENTERING_WORLD"}, OnEvent, nil, OnClick, OnEnter, nil, L["Micro Menu"])
---DT:RegisterDatatext("Micro Menu", {"PLAYER_ENTERING_WORLD"}, OnEvent, nil, OnClick, OnEnter, L["Micro Menu"])
+DT:RegisterDatatext("Micro Menu", nil, {"PLAYER_ENTERING_WORLD"}, OnEvent, nil, OnClick, OnEnter, nil, L["Micro Menu"], nil, ValueColorUpdate)
