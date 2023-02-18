@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
--- ElvUI Titles Datatext By Crackpot (US, Arthas)
+-- ElvUI_MicroMenuDatatext By Crackpot (US, Illidan)
 -------------------------------------------------------------------------------
-local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
-local L = AceLocale:NewLocale("ElvUI_MicroMenuDatatext", "deDE", false)
+local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI_MicroMenuDatatext", "deDE", false)
 if not L then return end
 
 --@localization(locale="deDE", format="lua_additive_table", same-key-is-true=true, escape-non-ascii=true, handle-unlocalized="english")@
+

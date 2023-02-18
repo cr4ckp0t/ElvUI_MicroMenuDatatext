@@ -3,8 +3,8 @@
 -------------------------------------------------------------------------------
 local E, _, V, P, G = unpack(ElvUI)
 local DT = E:GetModule("DataTexts")
-local L = LibStub("AceLocale-3.0"):GetLocale("ElvUI_MicroMenuDatatext", false)
-local EP = LibStub("LibElvUIPlugin-1.0")
+local L = E.Libs.ACL:GetLocale("ElvUI_MicroMenuDatatext", false)
+local EP = E.Libs.EP
 
 -- local api cache
 local C_StorePublic_IsEnabled = C_StorePublic.IsEnabled
