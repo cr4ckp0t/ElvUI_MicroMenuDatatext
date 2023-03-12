@@ -5,27 +5,29 @@ local E, _, V, P, G = unpack(ElvUI)
 local DT = E:GetModule("DataTexts")
 local L = E.Libs.ACL:GetLocale("ElvUI_MicroMenuDatatext", false)
 local EP = E.Libs.EP
+local ACH = E.Libs.ACH
 
 -- local api cache
 local C_StorePublic_IsEnabled = C_StorePublic.IsEnabled
-local CreateFrame = _G["CreateFrame"]
-local LoadAddOn = _G["LoadAddOn"]
-local HideUIPanel = _G["HideUIPanel"]
-local MicroButtonTooltipText = _G["MicroButtonTooltipText"]
-local ShowUIPanel = _G["ShowUIPanel"]
-local ToggleAchievementFrame = _G["ToggleAchievementFrame"]
-local ToggleCharacter = _G["ToggleCharacter"]
-local ToggleCollectionsJournal = _G["ToggleCollectionsJournal"]
-local ToggleEncounterJournal = _G["ToggleEncounterJournal"]
-local ToggleFrame = _G["ToggleFrame"]
-local ToggleGuildFrame = _G["ToggleGuildFrame"]
-local ToggleHelpFrame = _G["ToggleHelpFrame"]
-local ToggleLFDParentFrame = _G["ToggleLFDParentFrame"]
-local ToggleQuestLog = _G["ToggleQuestLog"]
-local ToggleSpellBook = _G["ToggleSpellBook"]
-local ToggleStoreUI = _G["ToggleStoreUI"]
-local UIDropDownMenu_AddButton = _G["UIDropDownMenu_AddButton"]
-local UnitLevel = _G["UnitLevel"]
+local CreateFrame = _G.CreateFrame
+local LoadAddOn = _G.LoadAddOn
+local HideUIPanel = _G.HideUIPanel
+local MicroButtonTooltipText = _G.MicroButtonTooltipText
+local ShowUIPanel = _G.ShowUIPanel
+local ToggleAchievementFrame = _G.ToggleAchievementFrame
+local ToggleCharacter = _G.ToggleCharacter
+local ToggleCollectionsJournal = _G.ToggleCollectionsJournal
+local ToggleEncounterJournal = _G.ToggleEncounterJournal
+local ToggleFrame = _G.ToggleFrame
+local ToggleGuildFrame = _G.ToggleGuildFrame
+local ToggleHelpFrame = _G.ToggleHelpFrame
+local ToggleLFDParentFrame = _G.ToggleLFDParentFrame
+local ToggleQuestLog = _G.ToggleQuestLog
+local ToggleSpellBook = _G.ToggleSpellBook
+local ToggleStoreUI = _G.ToggleStoreUI
+local UIDropDownMenu_AddButton = _G.UIDropDownMenu_AddButton
+local UnitLevel = _G.UnitLevel
+
 
 local format = string.format
 local join = string.join
@@ -288,68 +290,16 @@ P["micromenudt"] = {
 
 local function InjectOptions()
 	if not E.Options.args.Crackpotx then
-		E.Options.args.Crackpotx = {
-			type = "group",
-			order = -2,
-			name = L["Plugins by |cff0070deCrackpotx|r"],
-			args = {
-				thanks = {
-					type = "description",
-					order = 1,
-					name = L["Thanks for using and supporting my work!  - |cff0070deCrackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."],
-				},
-			},
-		}
-	elseif not E.Options.args.Crackpotx.args.thanks then
-		E.Options.args.Crackpotx.args.thanks = {
-			type = "description",
-			order = 1,
-			name = L["Thanks for using and supporting my work!  -- |cff0070deCrackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."],
-		}
+		E.Options.args.Crackpotx = ACH:Group(L["Plugins by |cff0070deCrackpotx|r"])
 	end
-	
-	E.Options.args.Crackpotx.args.micromenudt = {
-		type = "group",
-		name = L["Micro Menu Datatext"],
-		get = function(info) return E.db.micromenudt[info[#info]] end,
-		set = function(info, value) E.db.micromenudt[info[#info]] = value; DT:LoadDataTexts() end,
-		args = {
-			defaultAction = {
-				type = "select",
-				order = 4,
-				style = "dropdown",
-				width = "double",
-				name = L["Default Click Action"],
-				desc = L["Default action when you left click on the datatext."],
-				values = {
-					character = L["Toggle Character Frame"],
-					spellbook = L["Toggle Spellbook"],
-					talents = L["Toggle Talents"],
-					achievements = L["Toggle Achievements"],
-					quests = L["Toggle Quest Log"],
-					guild = L["Toggle Guild Frame"],
-					dungeons = L["Toggle Dungeons Frame"],
-					collections = L["Toggle Collections Frame"],
-					encounters = L["Toggle Encounters Guide"],
-					gamemenu = L["Toggle Game Menu"],
-					elvui = L["Toggle ElvUI Options UI"],
-					elvuict = L["Toggle ElvUI Chat Tweaks Config"],
-				},
-			},
-			showElvui = {
-				type = "toggle",
-				order = 5,
-				name = L["Show ElvUI Config"],
-				desc = L["Show a shortcut to open ElvUI's config in the menu."],
-			},
-			showElvuict = {
-				type = "toggle",
-				order = 6,
-				name = L["Show ElvUI CT"],
-				desc = L["Show a shortcut to open ElvUI Chat Tweaks' config in the menu.\n\n|cffff0000This only applies if this addon is loaded.|r"],
-			}
-		},
-	}
+	if not E.Options.args.Crackpotx.args.thanks then
+		E.Options.args.Crackpotx.args.thanks = ACH:Description(L["Thanks for using and supporting my work!  -- |cff0070deCrackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."], 1)
+	end
+
+	E.Options.args.Crackpotx.args.micromenudt = ACH:Group(L["Micro Menu Datatext"], nil, nil, nil, function(info) return E.db.micromenudt[info[#info]] end, function(info, value) E.db.micromenudt[info[#info]] = value; DT:ForceUpdate_DataText("Micro Menu") end)
+	E.Options.args.Crackpotx.args.micromenudt.args.defaultAction = ACH:Select(L["Default Click Action"], L["Default action when you left click on the datatext."], 1, { character = L["Toggle Character Frame"], spellbook = L["Toggle Spellbook"], talents = L["Toggle Talents"], achievements = L["Toggle Achievements"], quests = L["Toggle Quest Log"], guild = L["Toggle Guild Frame"], dungeons = L["Toggle Dungeons Frame"], collections = L["Toggle Collections Frame"], encounters = L["Toggle Encounters Guide"], gamemenu = L["Toggle Game Menu"], elvui = L["Toggle ElvUI Options UI"], elvuict = L["Toggle ElvUI Chat Tweaks Config"] })
+	E.Options.args.Crackpotx.args.micromenudt.args.showElvui = ACH:Toggle(L["Show ElvUI Config"], L["Show a shortcut to open ElvUI's config in the menu."], 2)
+	E.Options.args.Crackpotx.args.micromenudt.args.showElvuict = ACH:Toggle(L["Show ElvUI CT"], L["Show a shortcut to open ElvUI Chat Tweaks' config in the menu.\n\n|cffff0000This only applies if this addon is loaded.|r"], 3, nil, nil, nil, nil, nil, function() return not IsAddOnLoaded("ElvUI_ChatTweaks") end)
 end
 
 EP:RegisterPlugin(..., InjectOptions)
