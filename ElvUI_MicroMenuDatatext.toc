@@ -1,7 +1,8 @@
 ## Interface: 100107
 ## Author: Crackpot
-## Title: |cff1784d1ElvUI|r Micro Menu Datatext
-## Version: 2.1.6
+## Title: ElvUI Micro Menu Datatext
+## IconTexture: Interface\AddOns\ElvUI_MicroMenuDatatext\Media\crackpot
+## Version: 2.1.7
 ## Notes: Replace the stock micro menu with a datatext.
 ## RequiredDeps: ElvUI
 
@@ -18,8 +19,4 @@ Locales\zhCN.lua
 Locales\zhTW.lua
 
 ElvUI_MicroMenuDatatext.lua
-
-
-
-
 
